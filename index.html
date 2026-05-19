@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> ALXploit – Devloper Gabut asal Indo </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0b0d11;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #12151c;
+            border-bottom: 1px solid #2a2d36;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00bcd4;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #b0b3b8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00bcd4;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(145deg, #12151c, #1a1e28);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            color: #00bcd4;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #9aa0a8;
+        }
+
+        .section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #00bcd4;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: #181c26;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #2a2d36;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15);
+        }
+
+        .card img,
+        .card video {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #0f1219;
+        }
+
+        .card-content {
+            padding: 1.2rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .card-content p {
+            color: #b0b3b8;
+            font-size: 0.95rem;
+        }
+
+        .card-content .date {
+            color: #6a6f7a;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .card-clickable {
+            cursor: pointer;
+        }
+
+        .search-box {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-box input {
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #2a2d36;
+            background: #12151c;
+            color: #e0e0e0;
+            width: 100%;
+            max-width: 400px;
+            font-size: 1rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #00bcd4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #12151c;
+            border-top: 1px solid #2a2d36;
+            color: #6a6f7a;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 2rem;
+            color: #6a6f7a;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">ALXploit</div>
+        <ul class="nav-links">
+            <li><a href="#news">Berita</a></li>
+            <li><a href="#projects">Proyek</a></li>
+            <li><a href="#shop">Toko</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Selamat datang di <span>Website Ku</span></h1>
+        <p>Developer dan cyber scurrity</p>
+    </header>
+
+    <section id="news" class="section">
+        <h2>Berita Terbaru</h2>
+        <div id="newsContainer" class="grid"></div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Proyek Saya</h2>
+        <div class="search-box">
+            <input type="text" id="projectSearch" placeholder="Cari proyek..." />
+        </div>
+        <div id="projectsContainer" class="grid"></div>
+    </section>
+
+    <section id="shop" class="section">
+        <h2>Toko Produk</h2>
+        <div id="shopContainer" class="grid"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ALXploit. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Fungsi untuk mengambil data dari file txt
+        async function loadData(file) {
+            try {
+                const response = await fetch('/asset/' + file);
+                if (!response.ok) throw new Error('Gagal memuat ' + file);
+                return await response.text();
+            } catch (error) {
+                console.error(error);
+                return '';
+            }
+        }
+
+        // Parse news.txt
+        function parseNews(text) {
+            const items = text.trim().split('\n\n');
+            return items.map(item => {
+                const lines = item.split('\n');
+                const obj = {};
+                lines.forEach(line => {
+                    const sep = line.indexOf(':');
+                    if (sep !== -1) {
+                        const key = line.substring(0, sep).trim();
+                        const value = line.substring(sep + 1).trim();
+                        obj[key.toLowerCase()] = value;
+                    }
+                });
+                return obj;
+            }).filter(item => item.judul);
+        }
+
+        // Parse project.txt
+        function parseProjects(text) {
+            const items = text.trim().split('\n\n');
+            return items.map(item => {
+                const lines = item.split('\n');
+                const obj = {};
+                lines.forEach(line => {
+                    const sep = line.indexOf(':');
+                    if (sep !== -1) {
+                        const key = line.substring(0, sep).trim();
+                        const value = line.substring(sep + 1).trim();
+                        obj[key.toLowerCase()] = value;
+                    }
+                });
+                return obj;
+            }).filter(item => item.judul);
+        }
+
+        // Parse product.txt
+        function parseProducts(text) {
+            const items = text.trim().split('\n\n');
+            return items.map(item => {
+                const lines = item.split('\n');
+                const obj = {};
+                lines.forEach(line => {
+                    const sep = line.indexOf(':');
+                    if (sep !== -1) {
+                        const key = line.substring(0, sep).trim();
+                        const value = line.substring(sep + 1).trim();
+                        obj[key.toLowerCase()] = value;
+                    }
+                });
+                return obj;
+            }).filter(item => item.nama);
+        }
+
+        // Render berita
+        function renderNews(data) {
+            const container = document.getElementById('newsContainer');
+            if (!data.length) {
+                container.innerHTML = '<div class="empty-message">Belum ada berita.</div>';
+                return;
+            }
+            container.innerHTML = data.map(item => `
+                <div class="card">
+                    ${item.banner ? (item.banner.match(/\.(mp4|webm|ogg)$/i) ? 
+                        `<video src="${item.banner}" controls></video>` : 
+                        `<img src="${item.banner}" alt="${item.judul}" />`) : ''}
+                    <div class="card-content">
+                        <h3>${item.judul}</h3>
+                        <p>${item.berita || ''}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render proyek
+        function renderProjects(data, filter = '') {
+            const container = document.getElementById('projectsContainer');
+            const filtered = data.filter(item => 
+                item.judul.toLowerCase().includes(filter.toLowerCase())
+            );
+            if (!filtered.length) {
+                container.innerHTML = '<div class="empty-message">Tidak ada proyek ditemukan.</div>';
+                return;
+            }
+            container.innerHTML = filtered.map(item => `
+                <div class="card card-clickable" onclick="window.location.href='${item.project || '#'}';">
+                    ${item.banner ? (item.banner.match(/\.(mp4|webm|ogg)$/i) ? 
+                        `<video src="${item.banner}" controls></video>` : 
+                        `<img src="${item.banner}" alt="${item.judul}" />`) : ''}
+                    <div class="card-content">
+                        <h3>${item.judul}</h3>
+                        ${item.project ? `<p style="font-size:0.8rem;color:#6a6f7a;">Klik untuk membuka proyek</p>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render produk
+        function renderProducts(data) {
+            const container = document.getElementById('shopContainer');
+            if (!data.length) {
+                container.innerHTML = '<div class="empty-message">Belum ada produk.</div>';
+                return;
+            }
+            container.innerHTML = data.map(item => `
+                <div class="card card-clickable" onclick="window.location.href='${item['url product'] || '#'}';">
+                    ${item.banner ? (item.banner.match(/\.(mp4|webm|ogg)$/i) ? 
+                        `<video src="${item.banner}" controls></video>` : 
+                        `<img src="${item.banner}" alt="${item.nama}" />`) : ''}
+                    <div class="card-content">
+                        <h3>${item.nama}</h3>
+                        <p>${item.deskripsi || ''}</p>
+                        ${item['url product'] ? `<p style="font-size:0.8rem;color:#6a6f7a;">Klik untuk melihat produk</p>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Inisialisasi
+        async function init() {
+            // Load news
+            const newsText = await loadData('news.txt');
+            const newsData = parseNews(newsText);
+            renderNews(newsData);
+
+            // Load projects
+            const projectText = await loadData('project.txt');
+            const projectData = parseProjects(projectText);
+            renderProjects(projectData);
+
+            // Load products
+            const productText = await loadData('product.txt');
+            const productData = parseProducts(productText);
+            renderProducts(productData);
+
+            // Pencarian proyek
+            const searchInput = document.getElementById('projectSearch');
+            searchInput.addEventListener('input', function() {
+                renderProjects(projectData, this.value);
+            });
+        }
+
+        // Jalankan setelah DOM siap
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
