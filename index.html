@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> ALXploit – Devloper Gabut asal Indo </title>
+    <title>ALXploit - Devloper gabut</title>
     <style>
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -16,8 +17,10 @@
             background: #0b0d11;
             color: #e0e0e0;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
+        /* ===== NAVBAR ===== */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -48,16 +51,42 @@
             text-decoration: none;
             font-weight: 500;
             transition: 0.3s;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: #00bcd4;
+            background: rgba(0, 188, 212, 0.1);
         }
 
+        /* ===== PAGE CONTAINER ===== */
+        .page {
+            display: none;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== HERO (Home) ===== */
         .hero {
             text-align: center;
             padding: 4rem 2rem;
             background: linear-gradient(145deg, #12151c, #1a1e28);
+            border-radius: 12px;
+            margin-bottom: 2rem;
         }
 
         .hero h1 {
@@ -74,25 +103,73 @@
             color: #9aa0a8;
         }
 
-        .section {
-            padding: 3rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
-        .section h2 {
-            font-size: 2rem;
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00bcd4;
+        }
+
+        .stat-item .label {
+            color: #6a6f7a;
+        }
+
+        /* ===== SECTION HEADERS ===== */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid #00bcd4;
-            display: inline-block;
-            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2a2d36;
+            padding-bottom: 0.8rem;
         }
 
+        .section-header h2 {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        /* ===== SEARCH BOX ===== */
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #2a2d36;
+            background: #12151c;
+            color: #e0e0e0;
+            width: 250px;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #00bcd4;
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15);
+        }
+
+        /* ===== GRID CARDS ===== */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
         }
 
         .card {
@@ -101,11 +178,13 @@
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #2a2d36;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 188, 212, 0.12);
         }
 
         .card img,
@@ -119,51 +198,47 @@
 
         .card-content {
             padding: 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .card-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
             color: #ffffff;
         }
 
         .card-content p {
             color: #b0b3b8;
             font-size: 0.95rem;
+            flex: 1;
         }
 
-        .card-content .date {
+        .card-content .meta {
             color: #6a6f7a;
             font-size: 0.8rem;
-            margin-top: 0.3rem;
+            margin-top: 0.5rem;
         }
 
         .card-clickable {
             cursor: pointer;
         }
 
-        .search-box {
-            margin-bottom: 1.5rem;
-            display: flex;
-            justify-content: flex-end;
+        .card-clickable:hover .card-content h3 {
+            color: #00bcd4;
         }
 
-        .search-box input {
-            padding: 0.7rem 1.2rem;
-            border-radius: 8px;
-            border: 1px solid #2a2d36;
-            background: #12151c;
-            color: #e0e0e0;
-            width: 100%;
-            max-width: 400px;
-            font-size: 1rem;
+        /* ===== EMPTY STATE ===== */
+        .empty-message {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #6a6f7a;
+            font-style: italic;
+            grid-column: 1 / -1;
         }
 
-        .search-box input:focus {
-            outline: none;
-            border-color: #00bcd4;
-        }
-
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 2rem;
@@ -173,13 +248,17 @@
             margin-top: 2rem;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
                 gap: 0.5rem;
+                padding: 0.8rem 1rem;
             }
             .nav-links {
-                gap: 1rem;
+                gap: 0.8rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             .hero h1 {
                 font-size: 2rem;
@@ -187,56 +266,135 @@
             .grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        .empty-message {
-            text-align: center;
-            padding: 2rem;
-            color: #6a6f7a;
-            font-style: italic;
+            .search-box input {
+                width: 100%;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+            }
+            .stats {
+                gap: 1.5rem;
+            }
+            .stat-item .number {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== NAVIGATION ===== -->
     <nav class="navbar">
         <div class="logo">ALXploit</div>
         <ul class="nav-links">
-            <li><a href="#news">Berita</a></li>
-            <li><a href="#projects">Proyek</a></li>
-            <li><a href="#shop">Toko</a></li>
+            <li><a href="#" data-page="home" class="active">Beranda</a></li>
+            <li><a href="#" data-page="news">Berita</a></li>
+            <li><a href="#" data-page="projects">Proyek</a></li>
+            <li><a href="#" data-page="shop">Toko</a></li>
         </ul>
     </nav>
 
-    <header class="hero">
-        <h1>Selamat datang di <span>Website Ku</span></h1>
-        <p>Developer dan cyber scurrity</p>
-    </header>
+    <!-- ===== PAGE: HOME ===== -->
+    <div id="page-home" class="page active">
+        <div class="hero">
+            <h1>Selamat datang di <span>WebsiteKu!</span></h1>
+            <p>Developer gabut</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="number" id="statProjects">0</div>
+                    <div class="label">Proyek</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" id="statProducts">0</div>
+                    <div class="label">Produk</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" id="statNews">0</div>
+                    <div class="label">Berita</div>
+                </div>
+            </div>
+        </div>
 
-    <section id="news" class="section">
-        <h2>Berita Terbaru</h2>
+        <div style="text-align:center; padding:2rem 0; color:#6a6f7a;">
+            <p>Hai gays! kenalin aku ALXploit.</p>
+            <p style="margin-top:0.5rem;">website ini untuk aku berbagi project dan menjual project, Terimakasih udah mampir yaaa!</p>
+        </div>
+    </div>
+
+    <!-- ===== PAGE: NEWS ===== -->
+    <div id="page-news" class="page">
+        <div class="section-header">
+            <h2>Berita Terbaru</h2>
+        </div>
         <div id="newsContainer" class="grid"></div>
-    </section>
+    </div>
 
-    <section id="projects" class="section">
-        <h2>Proyek Saya</h2>
-        <div class="search-box">
-            <input type="text" id="projectSearch" placeholder="Cari proyek..." />
+    <!-- ===== PAGE: PROJECTS ===== -->
+    <div id="page-projects" class="page">
+        <div class="section-header">
+            <h2>Proyek Saya</h2>
+            <div class="search-box">
+                <input type="text" id="projectSearch" placeholder="Cari proyek..." />
+            </div>
         </div>
         <div id="projectsContainer" class="grid"></div>
-    </section>
+    </div>
 
-    <section id="shop" class="section">
-        <h2>Toko Produk</h2>
+    <!-- ===== PAGE: SHOP ===== -->
+    <div id="page-shop" class="page">
+        <div class="section-header">
+            <h2>Toko Produk</h2>
+            <div class="search-box">
+                <input type="text" id="productSearch" placeholder="Cari produk..." />
+            </div>
+        </div>
         <div id="shopContainer" class="grid"></div>
-    </section>
+    </div>
 
+    <!-- ===== FOOTER ===== -->
     <footer>
         <p>&copy; 2026 ALXploit. Semua hak dilindungi.</p>
     </footer>
 
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Fungsi untuk mengambil data dari file txt
+        // ============================================================
+        // 1. NAVIGASI (SPA)
+        // ============================================================
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const pages = {
+            home: document.getElementById('page-home'),
+            news: document.getElementById('page-news'),
+            projects: document.getElementById('page-projects'),
+            shop: document.getElementById('page-shop')
+        };
+
+        function showPage(pageId) {
+            // Sembunyikan semua halaman
+            Object.values(pages).forEach(p => p.classList.remove('active'));
+            // Tampilkan halaman yang dipilih
+            if (pages[pageId]) pages[pageId].classList.add('active');
+            // Update active class di nav
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageId) link.classList.add('active');
+            });
+            // Scroll ke atas
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showPage(this.dataset.page);
+            });
+        });
+
+        // ============================================================
+        // 2. LOAD DATA DARI /asset/
+        // ============================================================
         async function loadData(file) {
             try {
                 const response = await fetch('/asset/' + file);
@@ -248,7 +406,9 @@
             }
         }
 
-        // Parse news.txt
+        // ============================================================
+        // 3. PARSER
+        // ============================================================
         function parseNews(text) {
             const items = text.trim().split('\n\n');
             return items.map(item => {
@@ -257,16 +417,15 @@
                 lines.forEach(line => {
                     const sep = line.indexOf(':');
                     if (sep !== -1) {
-                        const key = line.substring(0, sep).trim();
+                        const key = line.substring(0, sep).trim().toLowerCase();
                         const value = line.substring(sep + 1).trim();
-                        obj[key.toLowerCase()] = value;
+                        obj[key] = value;
                     }
                 });
                 return obj;
             }).filter(item => item.judul);
         }
 
-        // Parse project.txt
         function parseProjects(text) {
             const items = text.trim().split('\n\n');
             return items.map(item => {
@@ -275,16 +434,15 @@
                 lines.forEach(line => {
                     const sep = line.indexOf(':');
                     if (sep !== -1) {
-                        const key = line.substring(0, sep).trim();
+                        const key = line.substring(0, sep).trim().toLowerCase();
                         const value = line.substring(sep + 1).trim();
-                        obj[key.toLowerCase()] = value;
+                        obj[key] = value;
                     }
                 });
                 return obj;
             }).filter(item => item.judul);
         }
 
-        // Parse product.txt
         function parseProducts(text) {
             const items = text.trim().split('\n\n');
             return items.map(item => {
@@ -293,16 +451,18 @@
                 lines.forEach(line => {
                     const sep = line.indexOf(':');
                     if (sep !== -1) {
-                        const key = line.substring(0, sep).trim();
+                        const key = line.substring(0, sep).trim().toLowerCase();
                         const value = line.substring(sep + 1).trim();
-                        obj[key.toLowerCase()] = value;
+                        obj[key] = value;
                     }
                 });
                 return obj;
             }).filter(item => item.nama);
         }
 
-        // Render berita
+        // ============================================================
+        // 4. RENDER FUNCTIONS
+        // ============================================================
         function renderNews(data) {
             const container = document.getElementById('newsContainer');
             if (!data.length) {
@@ -322,7 +482,6 @@
             `).join('');
         }
 
-        // Render proyek
         function renderProjects(data, filter = '') {
             const container = document.getElementById('projectsContainer');
             const filtered = data.filter(item => 
@@ -339,20 +498,23 @@
                         `<img src="${item.banner}" alt="${item.judul}" />`) : ''}
                     <div class="card-content">
                         <h3>${item.judul}</h3>
-                        ${item.project ? `<p style="font-size:0.8rem;color:#6a6f7a;">Klik untuk membuka proyek</p>` : ''}
+                        <p>${item.project ? 'Klik untuk membuka proyek' : ''}</p>
+                        <div class="meta">${item.project || 'URL tidak tersedia'}</div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Render produk
-        function renderProducts(data) {
+        function renderProducts(data, filter = '') {
             const container = document.getElementById('shopContainer');
-            if (!data.length) {
-                container.innerHTML = '<div class="empty-message">Belum ada produk.</div>';
+            const filtered = data.filter(item => 
+                item.nama.toLowerCase().includes(filter.toLowerCase())
+            );
+            if (!filtered.length) {
+                container.innerHTML = '<div class="empty-message">Tidak ada produk ditemukan.</div>';
                 return;
             }
-            container.innerHTML = data.map(item => `
+            container.innerHTML = filtered.map(item => `
                 <div class="card card-clickable" onclick="window.location.href='${item['url product'] || '#'}';">
                     ${item.banner ? (item.banner.match(/\.(mp4|webm|ogg)$/i) ? 
                         `<video src="${item.banner}" controls></video>` : 
@@ -360,13 +522,24 @@
                     <div class="card-content">
                         <h3>${item.nama}</h3>
                         <p>${item.deskripsi || ''}</p>
-                        ${item['url product'] ? `<p style="font-size:0.8rem;color:#6a6f7a;">Klik untuk melihat produk</p>` : ''}
+                        <div class="meta">${item['url product'] || 'URL tidak tersedia'}</div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Inisialisasi
+        // ============================================================
+        // 5. UPDATE STATS DI HOME
+        // ============================================================
+        function updateStats(newsCount, projectCount, productCount) {
+            document.getElementById('statNews').textContent = newsCount;
+            document.getElementById('statProjects').textContent = projectCount;
+            document.getElementById('statProducts').textContent = productCount;
+        }
+
+        // ============================================================
+        // 6. MAIN INIT
+        // ============================================================
         async function init() {
             // Load news
             const newsText = await loadData('news.txt');
@@ -383,14 +556,22 @@
             const productData = parseProducts(productText);
             renderProducts(productData);
 
-            // Pencarian proyek
-            const searchInput = document.getElementById('projectSearch');
-            searchInput.addEventListener('input', function() {
+            // Update stats di home
+            updateStats(newsData.length, projectData.length, productData.length);
+
+            // Search projects
+            const projectSearch = document.getElementById('projectSearch');
+            projectSearch.addEventListener('input', function() {
                 renderProjects(projectData, this.value);
+            });
+
+            // Search products
+            const productSearch = document.getElementById('productSearch');
+            productSearch.addEventListener('input', function() {
+                renderProducts(productData, this.value);
             });
         }
 
-        // Jalankan setelah DOM siap
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
