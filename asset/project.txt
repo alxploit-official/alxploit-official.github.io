@@ -1,0 +1,3 @@
+Judul: ExploitCore Boot
+Banner: https://files.catbox.moe/hdgyv1.png
+Project: https://exploitcore.github.io
