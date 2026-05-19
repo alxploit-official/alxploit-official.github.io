@@ -1,0 +1,3 @@
+Judul: EC-Boot
+Banner: https://files.catbox.moe/hdgyv1.png
+Berita: Hallo guys, aku mau mulai project EC-Boot buat ps2 slim dan fat.
