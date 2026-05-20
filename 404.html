@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Halaman Tidak Ditemukan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', 'Courier New', monospace;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            color: #ff1a1a;
+            text-shadow: 0 0 20px rgba(255, 26, 26, 0.4);
+            letter-spacing: 15px;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            color: #ffb3b3;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .error-message {
+            color: #c0a0a0;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .error-message p {
+            margin-bottom: 0.75rem;
+        }
+
+        .error-message small {
+            color: #a06060;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: #4a1010;
+            margin: 1.5rem auto;
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <div class="error-title">Halaman Tidak Ditemukan</div>
+        <div class="error-message">
+            <p>Maaf, halaman yang Anda cari tidak tersedia.</p>
+            <p>URL yang Anda masukkan mungkin salah atau halaman telah dihapus.</p>
+            <hr />
+            <small>ALXploit - Developer gabut</small>
+        </div>
+    </div>
+</body>
+</html>
